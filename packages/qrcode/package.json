@@ -1,0 +1,20 @@
+{
+  "name": "@lx/qrcode",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@dy-kit/qrcodegen": "^1.8.0",
+    "leafer-ui": "^1.11.0"
+  }
+}
