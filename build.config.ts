@@ -7,12 +7,10 @@ export default defineBuildConfig({
   declaration: 'node16',
   clean: true,
   externals: [
-    '@leafer-ui/interface',
-    '@leafer-in/interface',
-    '@leafer-in/editor',
-    '@leafer-ui/core',
+    '@leafer-in\/*',
+    '@leafer-ui\/*',
     'leafer-ui',
-    '@dy-kit/qrcodegen',
+    /@dy-kit\/*/,
   ],
   failOnWarn: false,
   rollup: {
