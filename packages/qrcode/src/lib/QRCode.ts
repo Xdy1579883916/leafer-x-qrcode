@@ -1,4 +1,5 @@
 import type { IImageData, IImageInputData, IJSONOptions, IObject, IUI } from 'leafer-ui'
+import { cssGradientToSvgDefs, isGradientColor } from '@dy-kit/gradient-parser'
 import { qrcodegen } from '@dy-kit/qrcodegen'
 import { boundsType, dataProcessor, Debug, Image, ImageData, LeaferCanvas, LeaferImage, Platform, Plugin, registerUI } from 'leafer-ui'
 
@@ -90,8 +91,19 @@ function svgInfo(qr: qrcodegen.QrCode, color: string = '#000', size: number, ico
   const numCells = cells.length
   const cellsToDraw = cells
   let svgInnerHtml = ''
+  let fill = color
+  try {
+    if (isGradientColor(color)) {
+      const colorId = 'qrcode-gradient'
+      svgInnerHtml += `<defs>${cssGradientToSvgDefs(colorId, color)}</defs>`
+      fill = `url(#${colorId})`
+    }
+  }
+  catch {
+    console.warn('invalid-gradient-color', color)
+  }
   const path1Html = `<path fill="transparent" d="M0,0 h${numCells}v${numCells}H0z" shape-rendering="crispEdges"></path>`
-  const path2Html = `<path fill="${color}" d="${generatePath(cellsToDraw, 0)}" shape-rendering="crispEdges"></path>`
+  const path2Html = `<path fill="${fill}" d="${generatePath(cellsToDraw, 0)}" shape-rendering="crispEdges"></path>`
   let iconHtml = ''
   if (iconConfig) {
     const { iconSrc, iconSize } = iconConfig

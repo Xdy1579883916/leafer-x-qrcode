@@ -62,6 +62,9 @@ importers:
 
   packages/qrcode:
     devDependencies:
+      '@dy-kit/gradient-parser':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@dy-kit/qrcodegen':
         specifier: ^1.8.0
         version: 1.8.0
@@ -212,6 +215,9 @@ packages:
     resolution: {integrity: sha512-//8027GSbxE9n3QlD73xFY6z4ZbHbvrOVB7AO6hsmrEzGbg+h2A09HboUyDgu+xsmj7JnvJD39Irt+2D0+iV8g==}
     peerDependencies:
       vue: ^3.0.11
+
+  '@dy-kit/gradient-parser@1.0.0':
+    resolution: {integrity: sha512-CoyvyxFQqKellHvcgsmhEARI3zrIWND3EjAZq/F9j/DEHyc6TDPEpbUW4LjVy93juulxKRF/S8UKnVw5/wDulg==}
 
   '@dy-kit/qrcodegen@1.8.0':
     resolution: {integrity: sha512-TmsMWUX+KO6E4lti+ZGXC9OZMEPTukCcwgqLijcBF7/WzmqAxxt/TXRqy6kjNidPSNUXZ8yBhnYeriON95rHqQ==}
@@ -2910,6 +2916,8 @@ snapshots:
   '@css-render/vue3-ssr@0.15.14(vue@3.5.25(typescript@5.9.3))':
     dependencies:
       vue: 3.5.25(typescript@5.9.3)
+
+  '@dy-kit/gradient-parser@1.0.0': {}
 
   '@dy-kit/qrcodegen@1.8.0': {}
 

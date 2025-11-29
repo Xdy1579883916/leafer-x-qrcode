@@ -10,6 +10,7 @@ Leafer UI 二维码插件, 根据文本自动生成二维码
 ## ✨ 特性
 
 - 🎨 **自定义颜色** - 支持生成任意颜色的二维码
+- 🌈 **渐变颜色** - 颜色支持 CSS 渐变字符串, 渐变解析工具：[@dy-kit/gradient-parser](https://www.npmjs.com/package/@dy-kit/gradient-parser)
 - 🖼️ **图标支持** - 可在二维码中央添加自定义图标
 - 🔧 **完全可配置** - 支持通过属性配置二维码内容、颜色、图标、图标尺寸
 - 📦 **依赖二维码生成器** - [@dy-kit/qrcodegen](https://www.npmjs.com/package/@dy-kit/qrcodegen)
@@ -18,7 +19,7 @@ Leafer UI 二维码插件, 根据文本自动生成二维码
 
 ```bash
 # pnpm
-pnpm add leafer-x-qrcode @dy-kit/qrcodegen
+pnpm add leafer-x-qrcode @dy-kit/qrcodegen @dy-kit/gradient-parser
 ```
 
 ## 🚀 快速开始
@@ -55,6 +56,18 @@ const qrcode = new QRCode({
 })
 ```
 
+### 渐变颜色
+
+```typescript
+const qrcode = new QRCode({
+  text: 'Gradient',
+  // 支持标准 CSS 渐变字符串
+  color: 'linear-gradient(45deg, #1e88e5, #e53935)',
+  width: 200,
+  height: 200,
+})
+```
+
 ### 带图标二维码
 
 ```typescript
@@ -79,7 +92,7 @@ const qrcode = new QRCode({
 | 属性        | 类型     | 默认值      | 说明                  |
 |-----------|--------|----------|---------------------|
 | `text`    | string | `'<None>'` | 二维码内容               |
-| `color`   | string | `'#000'`   | 二维码颜色               |
+| `color`   | string | `'#000'`   | 二维码颜色（支持纯色或 CSS 渐变） |
 | `iconSrc` | string | `null`     | 中心图标地址 （url、base64） |
 | `iconSize`| number | `20`       | 中心图标尺寸(px)          |
 

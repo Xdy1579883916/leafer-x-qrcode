@@ -50,6 +50,7 @@ async function initLeafer() {
     }),
     new QRCode({
       text: 'Hello World',
+      color: 'linear-gradient(90deg, rgb(48, 34, 238) 0%, rgb(143, 20, 128) 54%, rgb(236, 7, 19) 100%)',
       iconSrc: 'https://cn.vuejs.org/logo.svg',
       width: 100,
       height: 100,
