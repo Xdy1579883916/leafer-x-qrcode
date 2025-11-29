@@ -1,7 +1,7 @@
 {
   "name": "leafer-x-qrcode",
   "type": "module",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "packageManager": "pnpm@10.14.0",
   "description": "Leafer 二维码插件",
   "author": "XiaDeYu <1579883916@qq.com>",
