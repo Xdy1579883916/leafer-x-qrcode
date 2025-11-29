@@ -5,7 +5,7 @@ import '@leafer-in/text-editor'
 import '@leafer-in/export'
 import '@leafer-in/view'
 import '@leafer-in/viewport'
-import {App, Debug} from "leafer-ui";
+import {App, Debug, Group} from "leafer-ui";
 import "@lx/qrcode"
 import {QRCode} from "@lx/qrcode"
 
@@ -75,6 +75,16 @@ function getUIs(): QRCode[] {
 }
 
 function handleExport2() {
+  const group = new Group()
+  const uis = getUIs()
+  uis.forEach(v => {
+    v.clone().dropTo(group)
+  })
+  group.export("test.png")
+}
+
+
+function handleExport3() {
   console.log(getUIs().map(v => v.toJSON()))
 }
 function handleDebug() {
@@ -91,7 +101,8 @@ function handleDebug() {
       <NFlex justify="start">
         <NButton @click="handleDebug"> Debug </NButton>
         <NButton @click="handleExport">导出图片</NButton>
-        <NButton @click="handleExport2">导出JSON（见console）</NButton>
+        <NButton @click="handleExport2">导出图片2</NButton>
+        <NButton @click="handleExport3">导出JSON（见console）</NButton>
       </NFlex>
     </NFlex>
   </NFlex>

@@ -1,16 +1,6 @@
 import type { IImageData, IImageInputData, IJSONOptions, IObject, IUI } from 'leafer-ui'
 import { qrcodegen } from '@dy-kit/qrcodegen'
-import {
-  boundsType,
-  dataProcessor,
-  Debug,
-  Image,
-  ImageData,
-  LeaferCanvas,
-  Platform,
-  Plugin,
-  registerUI,
-} from 'leafer-ui'
+import { boundsType, dataProcessor, Debug, Image, ImageData, LeaferCanvas, LeaferImage, Platform, Plugin, registerUI } from 'leafer-ui'
 
 const console = Debug.get('leafer-x-qrcode')
 
@@ -142,10 +132,17 @@ function isURL(str: string) {
 }
 
 async function toBase64(url: string): Promise<string> {
-  const img = await Platform.origin.loadImage(url)
-  const canvas = new LeaferCanvas(img)
-  canvas.drawImage(img, 0, 0)
-  return canvas.toDataURL() as string
+  return new Promise((resolve) => {
+    const leaferImage = new LeaferImage({ url })
+    leaferImage.load((image: LeaferImage) => {
+      const canvas = new LeaferCanvas(image)
+      canvas.drawImage(image.view, 0, 0)
+      const data = canvas.toDataURL() as string
+      canvas.destroy()
+      leaferImage.destroy()
+      resolve(data)
+    })
+  })
 }
 
 const DEFAULT_TEXT = '<None>'
@@ -214,9 +211,8 @@ export class ProcessorData extends ImageData implements IProcessDataType {
     const ui = this.__leaf
     const text = this._text || DEFAULT_TEXT
     const color = this._color || DEFAULT_COLOR
-    const qr = qrcodegen.QrCode.encodeText(text, qrcodegen.QrCode.Ecc.MEDIUM)
-    const svg_size = 100
-    ui.url = toSvgURL(svgInfo(qr, color, svg_size, this.__iconConfig), svg_size)
+    const qr = qrcodegen.QrCode.encodeText(text, qrcodegen.QrCode.Ecc.QUARTILE)
+    ui.url = toSvgURL(svgInfo(qr, color, 100, this.__iconConfig), 100)
   }
 
   public __getData(): IObject {
