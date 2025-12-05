@@ -7,8 +7,8 @@ export default defineBuildConfig({
   declaration: 'node16',
   clean: true,
   externals: [
-    '@leafer-in\/*',
-    '@leafer-ui\/*',
+    /@leafer-in\/*/,
+    /@leafer-ui\/*/,
     'leafer-ui',
     /@dy-kit\/*/,
   ],
