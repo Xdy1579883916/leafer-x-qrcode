@@ -16,6 +16,7 @@
   "devDependencies": {
     "@dy-kit/gradient-parser": "^1.0.0",
     "@dy-kit/qrcodegen": "^1.8.0",
-    "leafer-ui": "^1.11.0"
+    "@leafer-ui/core": "^1.11.2",
+    "@leafer-ui/interface": "^1.11.2"
   }
 }

@@ -1,7 +1,7 @@
-import type { IImageData, IImageInputData, IJSONOptions, IObject, IUI } from 'leafer-ui'
+import type { IImageData, IImageInputData, IJSONOptions, IObject, IUI } from '@leafer-ui/interface'
 import { cssGradientToSvgDefs, isGradientColor } from '@dy-kit/gradient-parser'
 import { qrcodegen } from '@dy-kit/qrcodegen'
-import { boundsType, dataProcessor, Debug, Image, ImageData, LeaferCanvas, LeaferImage, Platform, Plugin, registerUI } from 'leafer-ui'
+import { boundsType, Creator, dataProcessor, Debug, Image, ImageData, Platform, Plugin, registerUI } from '@leafer-ui/core'
 
 const console = Debug.get('leafer-x-qrcode')
 
@@ -145,9 +145,9 @@ function isURL(str: string) {
 
 async function toBase64(url: string): Promise<string> {
   return new Promise((resolve) => {
-    const leaferImage = new LeaferImage({ url })
-    leaferImage.load((image: LeaferImage) => {
-      const canvas = new LeaferCanvas(image)
+    const leaferImage = Creator.image({ url })
+    leaferImage.load((image: any) => {
+      const canvas = Creator.hitCanvas(image)
       canvas.drawImage(image.view, 0, 0)
       const data = canvas.toDataURL() as string
       canvas.destroy()

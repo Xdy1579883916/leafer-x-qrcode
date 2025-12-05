@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {onMounted} from 'vue'
 import '@leafer-in/editor'
-import '@leafer-in/text-editor'
 import '@leafer-in/export'
 import '@leafer-in/view'
 import '@leafer-in/viewport'
