@@ -147,7 +147,8 @@ async function toBase64(url: string): Promise<string> {
   return new Promise((resolve) => {
     const leaferImage = Creator.image({ url })
     leaferImage.load((image: any) => {
-      const canvas = Creator.hitCanvas(image)
+      const { width, height } = image
+      const canvas = Creator.hitCanvas({ width, height, pixelRatio: 1 })
       canvas.drawImage(image.view, 0, 0)
       const data = canvas.toDataURL() as string
       canvas.destroy()
